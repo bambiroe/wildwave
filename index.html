@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="sl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wildwave: Interactive Visualization</title>
+
+  <!-- p5.js + p5.sound -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.min.js"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div id="controls">
+      <h1>Wildwave</h1>
+      <label>Template files:
+        <select id="presetSelect">
+          <option value="">-- Choose --</option>
+          <option value="bird">Bird</option>
+          <option value="whale">Whale</option>
+          <option value="frog">Frog</option>
+          <option value="cat">Cat</option>
+        </select>
+      </label>
+
+      <label>Upload a file:
+        <input type="file" id="fileInput" accept="audio/*">
+      </label>
+
+      <hr />
+
+      <label>Animal profile:
+        <select id="animalProfile">
+          <option value="">-- Choose --</option>
+          <option value="bird">Bird</option>
+          <option value="whale">Whale</option>
+          <option value="frog">Frog</option>
+          <option value="cat">Cat</option>
+        </select>
+      </label>
+
+      <label>Sensitivity:
+        <input type="range" id="sensitivity" min="0.1" max="10.0" step="0.1" value="5.0">
+      </label>
+
+      <label>Base colour:
+        <input type="color" id="baseColor" value="#66ccff">
+      </label>
+
+      <hr />
+
+      <div id="status">Status: Ready</div>
+
+      <div id="btn-menu">
+        <button id="playBtn"><i class="fa-solid fa-play"></i> / <i class="fa-solid fa-pause"></i></button>
+        <button id="stopBtn">Stop</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- JS modules -->
+  <script src="js/sketch.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/visuals.js"></script>
+
+  <!-- Main -->
+</body>
+</html>
