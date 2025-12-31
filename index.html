@@ -18,38 +18,42 @@
   <header>
     <div id="controls">
       <h1>Wildwave</h1>
-      <label>Template files:
-        <select id="presetSelect">
-          <option value="">-- Choose --</option>
-          <option value="bird">Bird</option>
-          <option value="whale">Whale</option>
-          <option value="frog">Frog</option>
-          <option value="cat">Cat</option>
-        </select>
+
+      <hr />
+
+      <label>Upload file:
+        <input type="file" id="fileInput" accept="audio/*" style="display:none;">
+        <label for="fileInput" style="cursor:pointer;"><i class="fa-solid fa-upload"></i></label> 
       </label>
 
-      <label>Upload a file:
-        <input type="file" id="fileInput" accept="audio/*">
+      <label>Template files:
+        <select id="presetSelect">
+          <option value="none">-</option>
+          <option value="bird"><span>🐦</option>
+          <option value="whale">🐋</option>
+          <option value="frog">🐸</option>
+          <option value="cat">🐈</option>
+        </select>
       </label>
 
       <hr />
 
       <label>Animal profile:
         <select id="animalProfile">
-          <option value="">-- Choose --</option>
-          <option value="bird">Bird</option>
-          <option value="whale">Whale</option>
-          <option value="frog">Frog</option>
-          <option value="cat">Cat</option>
+          <option value="">-</option>
+          <option value="bird">🐦</option>
+          <option value="whale">🐋</option>
+          <option value="frog">🐸</option>
+          <option value="cat">🐈</option>
         </select>
       </label>
 
-      <label>Sensitivity:
+      <label>Sensitivity:<br />
         <input type="range" id="sensitivity" min="0.1" max="10.0" step="0.1" value="5.0">
       </label>
 
       <label>Base colour:
-        <input type="color" id="baseColor" value="#66ccff">
+        <input type="color" id="baseColor" value="#ffffff">
       </label>
 
       <hr />
@@ -57,8 +61,8 @@
       <div id="status">Status: Ready</div>
 
       <div id="btn-menu">
-        <button id="playBtn"><i class="fa-solid fa-play"></i> / <i class="fa-solid fa-pause"></i></button>
-        <button id="stopBtn">Stop</button>
+        <button id="playBtn"><i class="fa-solid fa-play"></i></button>
+        <button id="stopBtn"><i class="fa-solid fa-stop"></i></button>
       </div>
     </div>
   </header>

@@ -5,7 +5,6 @@ const whale = { range: [20, 400], minCount: 4, maxCount: 4, defaultColor: "#5087
 const frog = { range: [400, 2000], minCount: 1, maxCount: 8, defaultColor: "#5fd764" }; 
 const cat = { range: [100, 2000], minCount: 1, maxCount: 8, defaultColor: "#d6d6d6" };
 
-// Variable to store the smoothed intensity across frames
 let smoothedIntensity = 0;
 
 function createAnimalVisual(spectrum, level, animalType, fft) {
@@ -13,7 +12,7 @@ function createAnimalVisual(spectrum, level, animalType, fft) {
 
   // ------ Color Setup ------
   const customColor = baseColorEl.value();
-  const c = (customColor !== "#66ccff") ? color(customColor) : color(animalType.defaultColor); 
+  const c = (customColor !== "#ffffff") ? color(customColor) : color(animalType.defaultColor); 
   const [h, s, b] = [hue(c), saturation(c), brightness(c)];
 
   // ------ Intensity & Smoothing Setup ------
@@ -21,14 +20,14 @@ function createAnimalVisual(spectrum, level, animalType, fft) {
   const targetIntensity = (energy / 255) * level;
   
 
-  // 0.2 is the 'smoothness' factor: lower = smoother, higher = snappier
+  // Note: 0.2 is the 'smoothness' factor
   smoothedIntensity = lerp(smoothedIntensity, targetIntensity, 0.2);
   
   const activeIntensity = smoothedIntensity;
 
   // ------ Bird: Calm Dancing Notes ------
   if (animalType === bird) {
-    const windSpeed = 1.5 + (activeIntensity * 4); 
+    const windSpeed = 1.5 + (activeIntensity * 2); 
 
     for (let i = 0; i < animalType.maxCount; i++) {
       const flowX = (frameCount * windSpeed + i * 80) % (width + 100) - 50;
@@ -45,7 +44,7 @@ function createAnimalVisual(spectrum, level, animalType, fft) {
   
   // ------ Frog: Throat Sack ------
   else if (animalType === frog) {
-    const r = map(activeIntensity, 0, 1, 120, width * 0.5); 
+    const r = map(activeIntensity, 0, 1, 120, width * 0.8); 
     const alphaVal = map(activeIntensity, 0, 1, 0.8, 0.6); 
 
     push();
@@ -85,7 +84,7 @@ function createAnimalVisual(spectrum, level, animalType, fft) {
 
   // ------ Cat: Whiskers ------
   else if (animalType === cat) {
-    const amplitude = map(activeIntensity, 0, 1, 0, 120);
+    const amplitude = map(activeIntensity, 0, 1, 0, 200);
     const waveFreq = map(activeIntensity, 0, 1, 0.01, 0.05);
 
     push(); 

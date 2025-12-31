@@ -121,7 +121,7 @@ hr {
   opacity: 0.1;
 }
 
-input[type="file"] {
+input[type="file"], input[type="range"] {
   width: 80%;
 }
 
