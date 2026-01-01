@@ -12,7 +12,7 @@ function createAnimalVisual(spectrum, level, animalType, fft) {
 
   // ------ Color Setup ------
   const customColor = baseColorEl.value();
-  const c = (customColor !== "#ffffff") ? color(customColor) : color(animalType.defaultColor); 
+  const c = (customColor !== "#b8a6ff") ? color(customColor) : color(animalType.defaultColor); 
   const [h, s, b] = [hue(c), saturation(c), brightness(c)];
 
   // ------ Intensity & Smoothing Setup ------

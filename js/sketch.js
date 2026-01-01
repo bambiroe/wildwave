@@ -71,9 +71,5 @@ function updateVisuals() {
 }
 
 function windowResized() {
-  if (window.innerWidth <= 768) {
-    resizeCanvas(window.innerWidth, window.innerHeight * 0.8);
-  } else {
-    resizeCanvas(window.innerWidth * 0.8, window.innerHeight);
-  }
+  resizeCanvas(window.innerWidth, window.innerHeight);
 }

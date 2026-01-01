@@ -1,78 +1,89 @@
 <!doctype html>
-<html lang="sl">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Wildwave: Interactive Visualization</title>
 
-  <!-- p5.js + p5.sound -->
+  <!------ p5.js + p5.sound ------>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.min.js"></script>
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/style.css">
+  <!------ Styles ------>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div id="controls">
+
+  <header id="ui-panel">
+    <div class="logo-area">
       <h1>Wildwave</h1>
-
-      <hr />
-
-      <label>Upload file:
-        <input type="file" id="fileInput" accept="audio/*" style="display:none;">
-        <label for="fileInput" style="cursor:pointer;"><i class="fa-solid fa-upload"></i></label> 
-      </label>
-
-      <label>Template files:
-        <select id="presetSelect">
-          <option value="none">-</option>
-          <option value="bird"><span>🐦</option>
-          <option value="whale">🐋</option>
-          <option value="frog">🐸</option>
-          <option value="cat">🐈</option>
-        </select>
-      </label>
-
-      <hr />
-
-      <label>Animal profile:
-        <select id="animalProfile">
-          <option value="">-</option>
-          <option value="bird">🐦</option>
-          <option value="whale">🐋</option>
-          <option value="frog">🐸</option>
-          <option value="cat">🐈</option>
-        </select>
-      </label>
-
-      <label>Sensitivity:<br />
-        <input type="range" id="sensitivity" min="0.1" max="10.0" step="0.1" value="5.0">
-      </label>
-
-      <label>Base colour:
-        <input type="color" id="baseColor" value="#ffffff">
-      </label>
-
-      <hr />
-
       <div id="status">Status: Ready</div>
+    </div>
 
-      <div id="btn-menu">
-        <button id="playBtn"><i class="fa-solid fa-play"></i></button>
-        <button id="stopBtn"><i class="fa-solid fa-stop"></i></button>
+    <div class="controls-grid">
+      <div class="control-group">
+        <label class="sub-label">Source</label>
+        <div class="row-inputs">
+          <label class="icon-btn-label" title="Upload File">
+            <input type="file" id="fileInput" accept="audio/*">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+          </label>
+          
+          <div class="select-wrapper">
+             <select id="presetSelect">
+              <option value="none" disabled selected>Preset</option>
+              <option value="bird">Bird 🐦</option>
+              <option value="whale">Whale 🐋</option>
+              <option value="frog">Frog 🐸</option>
+              <option value="cat">Cat 🐈</option>
+            </select>
+            <i class="fa-solid fa-chevron-down arrow-icon"></i>
+          </div>
+        </div>
       </div>
+
+      <div class="control-group">
+        <label class="sub-label">Visuals</label>
+        
+        <div class="select-wrapper full-width">
+          <select id="animalProfile">
+            <option value="" disabled selected>Select Animal</option>
+            <option value="bird">Bird Profile</option>
+            <option value="whale">Whale Profile</option>
+            <option value="frog">Frog Profile</option>
+            <option value="cat">Cat Profile</option>
+          </select>
+           <i class="fa-solid fa-chevron-down arrow-icon"></i>
+        </div>
+
+        <div class="range-wrapper">
+            <label for="sensitivity">Sensitivity</label>
+            <input type="range" id="sensitivity" min="0.1" max="10.0" step="0.1" value="5.0">
+        </div>
+
+        <div class="color-wrapper">
+          <label for="baseColor">Tint</label>
+          <div class="color-input-mock">
+            <input type="color" id="baseColor" value="#b8a6ff">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="btn-menu">
+      <button id="playBtn" class="circle-btn"><i class="fa-solid fa-play"></i></button>
+      <button id="stopBtn" class="circle-btn secondary"><i class="fa-solid fa-stop"></i></button>
     </div>
   </header>
 
-  <!-- JS modules -->
+  <!------ Scripts ------>
   <script src="js/sketch.js"></script>
   <script src="js/ui.js"></script>
   <script src="js/utils.js"></script>
   <script src="js/visuals.js"></script>
 
-  <!-- Main -->
+  <!------ Main ------>
 </body>
 </html>
