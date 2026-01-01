@@ -1,6 +1,7 @@
 // js/ui.js
 
 let sensitivityEl, baseColorEl, animalProfileEl, statusEl;
+let currentObjectURL = null;
 
 let presetFiles = {
   bird: 'assets/samples/bird_example.mp3',
@@ -41,11 +42,14 @@ function handleFileSelect(event) {
   let file = event.target.files[0];
   if (!file) return;
 
+  // Cleanup old memory
+  if (currentObjectURL) URL.revokeObjectURL(currentObjectURL);
+
   audioManager.stop();
   statusEl.html('Status: Uploading file...');
-  let url = URL.createObjectURL(file);
+  currentObjectURL = URL.createObjectURL(file);
 
-  audioManager.loadSoundFile(url);
+  audioManager.loadSoundFile(currentObjectURL);
   statusEl.html('Status: File loaded');
 }
 
@@ -64,14 +68,16 @@ function stopSound() {
 
 function loadPreset() {
   let val = select('#presetSelect').value();
-  if (!val) return;
+  if (!val || val === 'none') return;
 
   audioManager.stop();
   let path = presetFiles[val];
   statusEl.html('Status: Loading preset...');
 
+  animalProfileEl.value(val);
+  updateDefaultColor();
+
   audioManager.loadSoundFile(path);
   statusEl.html('Status: Preset loaded (' + val + ')');
-  
   select('#playBtn').html('<i class="fa-solid fa-play"></i>');
 }

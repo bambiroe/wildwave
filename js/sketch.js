@@ -16,6 +16,11 @@ let audioManager = {
       this.soundFile = s;
       this.fft.setInput(this.soundFile);
       this.amp.setInput(this.soundFile);
+      
+      this.soundFile.onended(() => {
+        this.isPlaying = false;
+        if (typeof stopSound === "function") stopSound();
+      });
     });
   },
 
@@ -38,11 +43,10 @@ let audioManager = {
 };
 
 function setup() {
-  createCanvas(window.innerWidth, window.innerHeight);
+  createCanvas(windowWidth, windowHeight);
   colorMode(HSB, 360, 100, 100, 1);
   audioManager.init();
   initUI();
-  windowResized();
 }
 
 function draw() {
@@ -52,24 +56,21 @@ function draw() {
 function updateVisuals() {
   clear();
 
-  let spectrum = audioManager.fft.analyze();
-  let level = audioManager.amp.getLevel() * Number(sensitivityEl.value());
   let profile = animalProfileEl.value();
-
   if (!profile || !audioManager.soundFile || !audioManager.soundFile.isLoaded()) {
     return;
   }
 
-  switch (profile) {
-    case 'bird': createAnimalVisual(spectrum, level, bird, audioManager.fft); break;
-    case 'whale': createAnimalVisual(spectrum, level, whale, audioManager.fft); break;
-    case 'frog': createAnimalVisual(spectrum, level, frog, audioManager.fft); break;
-    case 'cat': createAnimalVisual(spectrum, level, cat, audioManager.fft); break;
-    default: ;
-    break;
+  let spectrum = audioManager.fft.analyze();
+  let level = audioManager.amp.getLevel() * Number(sensitivityEl.value());
+
+  const animalMap = { bird, whale, frog, cat };
+  if (animalMap[profile]) {
+    createAnimalVisual(spectrum, level, animalMap[profile], audioManager.fft);
   }
 }
 
 function windowResized() {
-  resizeCanvas(window.innerWidth, window.innerHeight);
+  resizeCanvas(windowWidth, windowHeight);
+  background(0);
 }

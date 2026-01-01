@@ -207,6 +207,11 @@ input[type=range]::-webkit-slider-runnable-track {
   margin-top: 15px;
 }
 
+.color-wrapper label {
+  font-size: 0.8rem;
+  color: var(--txt-muted);
+}
+
 .color-input-mock {
   width: 30px;
   height: 30px;
@@ -268,7 +273,42 @@ input[type="color"] {
   border-color: #fff;
 }
 
-/* ------ Mobile Responsive (Bottom Sheet Design) ------ */
+/* ------ Watermark Style ------ */
+#watermark {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
+#watermark a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  
+  color: var(--txt-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  transition: var(--transition);
+}
+
+#watermark a:hover {
+  color: var(--primary-accent);
+  background: var(--glass-hover);
+  border-color: var(--primary-accent);
+  transform: translateY(-2px);
+}
+
+/* ------ Mobile Responsive ------ */
 @media (max-width: 768px) {
   header#ui-panel {
     top: auto;
@@ -276,9 +316,9 @@ input[type="color"] {
     left: auto;
     right: auto;
     
-    width: 90%;
+    width: calc(100vw - 48px);
     height: auto;
-    max-height: 60vh; 
+    max-height: 50vh; 
     border-radius: 24px 24px 0 0;
     
     border-left: none;
@@ -287,7 +327,7 @@ input[type="color"] {
     
     flex-direction: column;
     gap: 15px;
-    padding: 20px 24px 40px 24px;
+    padding: 20px 24px 20px 24px;
     
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -340,5 +380,11 @@ input[type="color"] {
   .color-input-mock {
     width: 40px;
     height: 40px;
+  }
+
+  #watermark {
+    bottom: auto;
+    top: 20px;
+    right: 20px;
   }
 }
